@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Unified Icon Framework
 // @namespace    http://tampermonkey.net/
-// @version      1.1.3
-// @description  Shared static SVG icon library (Lucide + Custom) for Tampermonkey
+// @version      1.1.4
+// @description  Shared static SVG icon library (Lucide + Custom) for Tampermonkey scripts
 // @author       benderUnit
 // @exclude      *
 // ==/UserScript==
@@ -46,6 +46,18 @@
     //  2. Custom Icons Registry
     // ============================================================
     const customIcons = {
+        'tracker-icon-on': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" version="1.1">
+        <path d="M6,16.5C4.33349609375,16.5,2,15.75,2,12.75C2,9.25,5.5,8.5,6.5,8.5C7,6.75,8,4,12,4C15.5,4,17,6,17.5,7.75C17.5,7.75,22,8.25,22,12.5C22,15.5,20,16.5,18,16.5" stroke-linejoin="round" stroke-linecap="round"></path>
+        <path d="M6,16.5C4.33349609375,16.5,2,15.75,2,12.75C2,9.25,5.5,8.5,6.5,8.5C7,6.75,8,4,12,4C15.5,4,17,6,17.5,7.75C17.5,7.75,22,8.25,22,12.5C22,15.5,20,16.5,18,16.5" stroke-width="2" stroke-opacity="1" fill="#212629" stroke="#b7cad4"></path>
+        <path d="M9,16.5L12,19L16,14" stroke-linejoin="round" stroke-linecap="round" fill="none"></path>
+        <path d="M9,16.5L12,19L16,14" stroke-width="2" stroke-opacity="1" fill-opacity=".2" fill="none" stroke="#b7cad4"></path>
+        </svg>`,
+        'tracker-icon-off': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" version="1.1">
+        <path d="M6,16.5C4.33349609375,16.5,2,15.75,2,12.75C2,9.25,5.5,8.5,6.5,8.5C7,6.75,8,4,12,4C15.5,4,17,6,17.5,7.75C17.5,7.75,22,8.25,22,12.5C22,15.5,20,16.5,18,16.5" stroke-linejoin="round" stroke-linecap="round"></path>
+        <path d="M6,16.5C4.33349609375,16.5,2,15.75,2,12.75C2,9.25,5.5,8.5,6.5,8.5C7,6.75,8,4,12,4C15.5,4,17,6,17.5,7.75C17.5,7.75,22,8.25,22,12.5C22,15.5,20,16.5,18,16.5" stroke-width="2" stroke-opacity="1" fill="#d93900" stroke="#b7cad4"></path>
+        <path d="M9,16.5L12,19L16,14" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke="none"></path>
+        <path d="M9,16.5L12,19L16,14" stroke-width="2" stroke-opacity="1" fill-opacity=".2" fill="none" stroke="white"></path>
+        </svg>`,
         'badgeVisited': `<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.3327 10.0007C18.3327 12.084 15.8327 16.6673 9.99935 16.6673C4.16602 16.6673 1.66602 12.084 1.66602 10.0007C1.66602 7.91732 4.16602 3.33398 9.99935 3.33398C15.8327 3.33398 18.3327 7.91732 18.3327 10.0007Z" stroke="#EFEEF0" stroke-width="1.5" stroke-linecap="round"></path><path d="M12.4993 10.0007C12.4993 11.3814 11.3801 12.5007 9.99935 12.5007C8.6186 12.5007 7.49935 11.3814 7.49935 10.0007C7.49935 8.6199 8.6186 7.50065 9.99935 7.50065C11.3801 7.50065 12.4993 8.6199 12.4993 10.0007Z" stroke="#EFEEF0" stroke-width="1.5" stroke-linecap="round"></path></svg>`,
         'btnVisited': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1 11.9999L3 13.9999L5 11.9999" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 7.99994L11 12.9999L16 12.9999" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`,
         'btnStored': `<svg viewBox="0 0 24 24" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M6,16.5C4.33349609375,16.5,2,15.75,2,12.75C2,9.25,5.5,8.5,6.5,8.5C7,6.75,8,4,12,4C15.5,4,17,6,17.5,7.75C17.5,7.75,22,8.25,22,12.5C22,15.5,20,16.5,18,16.5" stroke-linejoin="round" stroke-linecap="round"></path><path d="M6,16.5C4.33349609375,16.5,2,15.75,2,12.75C2,9.25,5.5,8.5,6.5,8.5C7,6.75,8,4,12,4C15.5,4,17,6,17.5,7.75C17.5,7.75,22,8.25,22,12.5C22,15.5,20,16.5,18,16.5" stroke-width="2" stroke-opacity="1"></path><path d="M9,16.5L12,19L16,14" stroke-linejoin="round" stroke-linecap="round" fill="none"></path><path d="M9,16.5L12,19L16,14" stroke-width="2" stroke-opacity="1" fill-opacity=".2"></path></svg>`,
