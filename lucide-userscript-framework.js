@@ -2,7 +2,7 @@
 // @name         Unified Icon Framework
 // @namespace    http://tampermonkey.net/
 // @version      1.1.3
-// @description  Shared static SVG icon library (Lucide + Custom) for Tampermonkey scripts
+// @description  Shared static SVG icon library (Lucide + Custom) for Tampermonkey
 // @author       benderUnit
 // @exclude      *
 // ==/UserScript==
